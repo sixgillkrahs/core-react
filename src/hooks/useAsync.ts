@@ -21,23 +21,23 @@ import { useCallback, useEffect, useState } from "react";
  * }
  * ```
  */
-export default function useAsync(
-  callback: () => Promise<unknown>,
+export default function useAsync<T>(
+  callback: () => Promise<T>,
   dependencies: unknown[] = []
 ) {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<>();
-  const [value, setValue] = useState<unknown>();
+  const [error, setError] = useState<unknown>();
+  const [value, setValue] = useState<T>();
 
   const callbackMemoized = useCallback(() => {
     setLoading(true);
     setError(undefined);
     setValue(undefined);
     callback()
-      .then((value) => setValue(value))
+      .then(setValue)
       .catch(setError)
       .finally(() => setLoading(false));
-  }, dependencies);
+  }, [callback, ...dependencies]);
 
   useEffect(() => {
     callbackMemoized();

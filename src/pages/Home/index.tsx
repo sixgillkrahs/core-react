@@ -1,14 +1,9 @@
-import { useCopyToClipboard } from "../../hooks";
+import { Button } from "antd";
 
 const HomePage = () => {
-  const [copyToClipboard, { value, success }] = useCopyToClipboard();
   return (
     <div>
-      <button onClick={() => copyToClipboard("Hello, world!")}>
-        Copy to clipboard
-      </button>
-      <div>{value}</div>
-      <div>{success ? "Copied" : "Not copied"}</div>
+      <Button type="primary">Primary</Button>
     </div>
   );
 };

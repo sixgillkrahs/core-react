@@ -23,8 +23,8 @@ import type { CopyToClipboardOptions } from "../types";
  * ```
  */
 export default function useCopyToClipboard() {
-  const [value, setValue] = useState<string>();
-  const [success, setSuccess] = useState<boolean>();
+  const [value, setValue] = useState<string>("");
+  const [success, setSuccess] = useState<boolean>(false);
 
   const copyToClipboard = (text: string, options?: CopyToClipboardOptions) => {
     const result = copy(text, options);
@@ -32,5 +32,5 @@ export default function useCopyToClipboard() {
     setSuccess(result);
   };
 
-  return [copyToClipboard, { value, success }];
+  return [copyToClipboard, { value, success }] as const;
 }

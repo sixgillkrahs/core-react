@@ -4,46 +4,63 @@ import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import PrivateRouter from "./routes/PrivateRouter";
 import { PRIVATE_ROUTER, PUBLIC_ROUTER } from "./routes/router";
+import { Loading } from "./components";
+import { ConfigProvider, theme } from "antd";
+import viVN from "antd/locale/vi_VN";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {PUBLIC_ROUTER.map((route) => {
-          return (
-            <Route
-              key={route.id}
-              path={route.path}
-              element={
-                <MainLayout>
-                  <Suspense fallback={<div>Loading…</div>}>
-                    <route.component />
-                  </Suspense>
-                </MainLayout>
-              }
-            />
-          );
-        })}
-
-        {PRIVATE_ROUTER.map((route) => {
-          return (
-            <Route
-              key={route.id}
-              path={route.path}
-              element={
-                <MainLayout>
-                  <PrivateRouter>
-                    <Suspense fallback={<div>Loading…</div>}>
+    <ConfigProvider
+      locale={viVN}
+      theme={{
+        algorithm: theme.defaultAlgorithm,
+        // token: {
+        //   // Seed Token
+        //   // colorPrimary: "#00b96b",
+        //   // borderRadius: 6,
+        //   // // Alias Token
+        //   // colorBgContainer: "#f6ffed",
+        // },
+      }}
+    >
+      <BrowserRouter>
+        <Routes>
+          {PUBLIC_ROUTER.map((route) => {
+            return (
+              <Route
+                key={route.id}
+                path={route.path}
+                element={
+                  <MainLayout>
+                    <Suspense fallback={<Loading />}>
                       <route.component />
                     </Suspense>
-                  </PrivateRouter>
-                </MainLayout>
-              }
-            />
-          );
-        })}
-      </Routes>
-    </BrowserRouter>
+                  </MainLayout>
+                }
+              />
+            );
+          })}
+
+          {PRIVATE_ROUTER.map((route) => {
+            return (
+              <Route
+                key={route.id}
+                path={route.path}
+                element={
+                  <MainLayout>
+                    <PrivateRouter>
+                      <Suspense fallback={<Loading />}>
+                        <route.component />
+                      </Suspense>
+                    </PrivateRouter>
+                  </MainLayout>
+                }
+              />
+            );
+          })}
+        </Routes>
+      </BrowserRouter>
+    </ConfigProvider>
   );
 }
 
