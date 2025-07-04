@@ -1,16 +1,14 @@
-import { useState } from "react";
-import { usePrevious } from "../../hooks";
+import { useCopyToClipboard } from "../../hooks";
 
 const HomePage = () => {
-  const [value, setValue] = useState(0);
-  const preValue = usePrevious(value);
-  const onClick = () => {
-    setValue(value + 1);
-  };
+  const [copyToClipboard, { value, success }] = useCopyToClipboard();
   return (
-    <div style={{ height: "2000px" }}>
-      preValue: {preValue}, currentValue: {value},
-      <button onClick={onClick}>bấm đi</button>
+    <div>
+      <button onClick={() => copyToClipboard("Hello, world!")}>
+        Copy to clipboard
+      </button>
+      <div>{value}</div>
+      <div>{success ? "Copied" : "Not copied"}</div>
     </div>
   );
 };
