@@ -18,8 +18,8 @@ import { axios } from "@/utils";
  * }
  * ```
  */
-export async function example() {
-    const resp = await axios.get(`/users/1`);
+export async function example(id: string) {
+    const resp = await axios.get(`/users/${id}`);
     return {
         data: resp?.data || {},
     };

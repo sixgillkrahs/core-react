@@ -10,3 +10,7 @@ export interface CopyToClipboardOptions {
   format?: string; // MIME type
   onCopy?: (clipboardData: object) => void;
 }
+
+export type PromiseType<P extends Promise<any>> = P extends Promise<infer T> ? T : never;
+
+export type FunctionReturningPromise = (...args: any[]) => Promise<any>;

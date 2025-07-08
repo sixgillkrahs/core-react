@@ -1,19 +1,22 @@
+import { useAsyncFn, useEffectOnce } from "@/hooks";
+import { example } from "@/services/auth/api";
 import { Button } from "antd";
-import { useEffect } from "react";
-import { axios } from "../../utils";
+import { useState } from "react";
 
 const HomePage = () => {
-  useEffect(() => {
-    getData();
-  }, []);
+  const [refresh, setRefresh] = useState(false);
+  const [state, getUser] = useAsyncFn(example, [refresh]);
 
-  const getData = async () => {
-    const resp = await axios.get("/users/1");
-    console.log(resp.data);
-  };
+  useEffectOnce(() => {
+    getUser("1");
+  });
+
   return (
     <div>
-      <Button type="primary">Primary</Button>
+      {state.loading && <p>Loading...</p>}
+      {state.error && <p style={{ color: "red" }}>{state.error.message}</p>}
+      {state.value && <pre>{JSON.stringify(state.value, null, 2)}</pre>}
+      <Button onClick={() => setRefresh(true)}>Reload</Button>
     </div>
   );
 };
