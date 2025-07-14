@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 /**
  * tạo một hook để tạo async.
@@ -23,7 +23,7 @@ import { useCallback, useEffect, useState } from "react";
  */
 export default function useAsync<T>(
   callback: () => Promise<T>,
-  dependencies: unknown[] = []
+  dependencies: unknown[] = [],
 ) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown>();

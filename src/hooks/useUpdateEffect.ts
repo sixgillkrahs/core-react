@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 /**
  * tạo một hook để tạo update effect.
@@ -20,7 +20,7 @@ import { useEffect, useRef } from "react";
  */
 export default function useUpdateEffect(
   callback: () => void,
-  dependencies: unknown[]
+  dependencies: unknown[],
 ) {
   const firstRenderRef = useRef(true);
 

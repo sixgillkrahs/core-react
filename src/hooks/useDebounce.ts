@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import useTimeout from "./useTimeout";
+import { useEffect } from 'react';
+import useTimeout from './useTimeout';
 
 /**
  * tạo một hook để tạo debounce.
@@ -23,7 +23,7 @@ import useTimeout from "./useTimeout";
 export default function useDebounce(
   callback: () => void,
   delay: number,
-  dependencies: unknown[]
+  dependencies: unknown[],
 ) {
   const { reset, clear } = useTimeout(callback, delay);
   useEffect(reset, [...dependencies, reset]);

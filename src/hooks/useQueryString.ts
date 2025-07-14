@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import { useLocation } from "react-router-dom";
-import qs from "query-string";
+import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
+import qs from 'query-string';
 
 /**
   trả về parameter trên url hiện tại.
@@ -19,13 +19,13 @@ import qs from "query-string";
   ```
  */
 function useQueryString() {
-    const location = useLocation();
-    const queryString = useMemo(
-        () => qs.parse(location.search),
-        [location.search]
-    );
+  const location = useLocation();
+  const queryString = useMemo(
+    () => qs.parse(location.search),
+    [location.search],
+  );
 
-    return JSON.stringify(queryString);
+  return JSON.stringify(queryString);
 }
 
 export default useQueryString;

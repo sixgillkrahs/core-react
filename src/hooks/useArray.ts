@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 /**
  * tạo một hook để tạo array.
@@ -30,7 +30,7 @@ export default function useArray(defaultValue: unknown[]) {
     setArray((a) => [...a, element]);
   }
 
-  function filter(callback: (element: unknown) => boolean) {
+  function filter(callback: () => boolean) {
     setArray((a) => a.filter(callback));
   }
 

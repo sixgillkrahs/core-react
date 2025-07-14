@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect } from 'react';
 
 /**
   Cuộn lên trên đầu trang.
@@ -16,9 +16,9 @@ import { useLayoutEffect } from 'react'
   ```
  */
 function useScrollToTop() {
-    useLayoutEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 }
 
-export default useScrollToTop
+export default useScrollToTop;

@@ -1,6 +1,4 @@
-import { axios } from "@/utils";
-
-
+import { axios } from '@/utils';
 
 /**
  * Ví dụ tạo một function call api.
@@ -19,8 +17,8 @@ import { axios } from "@/utils";
  * ```
  */
 export async function example(id: string) {
-    const resp = await axios.get(`/users/${id}`);
-    return {
-        data: resp?.data || {},
-    };
+  const resp = await axios.get(`/users/${id}`);
+  return {
+    data: resp?.data || {},
+  };
 }

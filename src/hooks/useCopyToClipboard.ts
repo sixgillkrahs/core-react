@@ -1,6 +1,6 @@
-import copy from "copy-to-clipboard";
-import { useState } from "react";
-import type { CopyToClipboardOptions } from "../types";
+import copy from 'copy-to-clipboard';
+import { useState } from 'react';
+import type { CopyToClipboardOptions } from '../types';
 
 /**
  * tạo một hook để copy văn bản vào clipboard.
@@ -23,7 +23,7 @@ import type { CopyToClipboardOptions } from "../types";
  * ```
  */
 export default function useCopyToClipboard() {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
 
   const copyToClipboard = (text: string, options?: CopyToClipboardOptions) => {

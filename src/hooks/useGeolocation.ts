@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export default function useGeolocation(options?: PositionOptions) {
   const [loading, setLoading] = useState(false);
@@ -11,7 +11,7 @@ export default function useGeolocation(options?: PositionOptions) {
     if (!navigator.geolocation) {
       setError({
         code: 1,
-        message: "Geolocation not supported",
+        message: 'Geolocation not supported',
         PERMISSION_DENIED: 1,
         POSITION_UNAVAILABLE: 2,
         TIMEOUT: 3,
@@ -33,7 +33,7 @@ export default function useGeolocation(options?: PositionOptions) {
         setLoading(false);
         setError(err);
       },
-      options
+      options,
     );
   }, [options]);
 

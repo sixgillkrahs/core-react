@@ -1,40 +1,38 @@
 import axiosConfig from 'axios';
 
 const axios = axiosConfig.create({
-    baseURL: import.meta.env.VITE_BASEURL,
-    timeout: 10000,
-    headers: {
-        "Content-Type": "application/json",
-    },
+  baseURL: import.meta.env.VITE_BASEURL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-
 axios.interceptors.request.use(
-    (config) => {
-        // const token = localStorage.getItem("token");
-        // if (token) {
-        //     config.headers.Authorization = `Bearer ${token}`;
-        // }
-        return config;
-    },
-    (error) => Promise.reject(error)
+  (config) => {
+    // const token = localStorage.getItem("token");
+    // if (token) {
+    //     config.headers.Authorization = `Bearer ${token}`;
+    // }
+    return config;
+  },
+  (error) => Promise.reject(error),
 );
 
 axios.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (error.response) {
-            if (error.response.status === 403) {
-                // call refreshToken 
-                console.log("");
-            }
-            if (error.response.status === 401) {
-                console.log("Unauthorized");
-            }
-        }
-        return Promise.reject(error);
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      if (error.response.status === 403) {
+        // call refreshToken
+        console.log('');
+      }
+      if (error.response.status === 401) {
+        console.log('Unauthorized');
+      }
     }
+    return Promise.reject(error);
+  },
 );
 
 export default axios;
-

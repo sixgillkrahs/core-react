@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
 const PrivateRouter = ({ children }: { children: React.ReactNode }) => {
   return <Fragment>{children}</Fragment>;

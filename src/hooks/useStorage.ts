@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from 'react';
 
 /**
  * tạo một hook để tạo local storage.
@@ -57,13 +57,13 @@ export function useSessionStorage(key: string, defaultValue: unknown) {
 function useStorage(
   key: string,
   defaultValue: unknown,
-  storageObject: Storage
+  storageObject: Storage,
 ) {
   const [value, setValue] = useState(() => {
     const jsonValue = storageObject.getItem(key);
     if (jsonValue != null) return JSON.parse(jsonValue);
 
-    if (typeof defaultValue === "function") {
+    if (typeof defaultValue === 'function') {
       return defaultValue();
     } else {
       return defaultValue;

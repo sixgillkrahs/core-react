@@ -1,12 +1,12 @@
-import { Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import MainLayout from "./layouts/MainLayout";
-import PrivateRouter from "./routes/PrivateRouter";
-import { PRIVATE_ROUTER, PUBLIC_ROUTER } from "./routes/router";
-import { Loading } from "./components";
-import { ConfigProvider, theme } from "antd";
-import viVN from "antd/locale/vi_VN";
+import { Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
+import MainLayout from './layouts/MainLayout';
+import PrivateRouter from './routes/PrivateRouter';
+import { PRIVATE_ROUTER, PUBLIC_ROUTER } from './routes/router';
+import { Loading } from './components';
+import { ConfigProvider, theme } from 'antd';
+import viVN from 'antd/locale/vi_VN';
 
 function App() {
   return (
