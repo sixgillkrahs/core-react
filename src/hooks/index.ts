@@ -13,6 +13,7 @@ import useCopyToClipboard from './useCopyToClipboard';
 import useDisplayMessage from './useDisplayMessage';
 import useMountedState from './useMountedState';
 import useAsyncFn from './useAsyncFn';
+import useFavicon from './useFavicon';
 
 export {
   useQueryString,
@@ -31,4 +32,5 @@ export {
   useDisplayMessage,
   useMountedState,
   useAsyncFn,
+  useFavicon,
 };
