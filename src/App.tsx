@@ -31,11 +31,11 @@ function App() {
                 key={route.id}
                 path={route.path}
                 element={
-                  <MainLayout>
+                  <route.layout>
                     <Suspense fallback={<Loading />}>
                       <route.component />
                     </Suspense>
-                  </MainLayout>
+                  </route.layout>
                 }
               />
             );
