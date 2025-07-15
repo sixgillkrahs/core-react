@@ -1,37 +1,39 @@
 import { lazy } from 'react';
-import type { Route } from '../types/route';
-import MainLayout from '../layouts/MainLayout';
+import type { Route } from '@/types/route';
+import MainLayout from '@/layouts/MainLayout';
+import AuthLayout from '@/layouts/AuthLayout';
+import BlankLayout from '@/layouts/BlankLayout';
 
 export const PUBLIC_ROUTER: Route[] = [
   {
-    component: lazy(() => import('../pages/Home')),
+    component: lazy(() => import('@/pages/Auth/Login')),
     exact: true,
-    id: 'public-01',
-    path: 'main',
+    id: 'login',
+    path: 'login',
     public: true,
-    layout: MainLayout,
+    layout: AuthLayout,
   },
   {
-    component: lazy(() => import('../pages/Home/Dashboard')),
+    component: lazy(() => import('@/pages/Auth/Register')),
     exact: true,
-    id: 'public-01',
-    path: 'main/dashboard',
+    id: 'register',
+    path: 'register',
     public: true,
-    layout: MainLayout,
+    layout: AuthLayout,
   },
   {
-    component: lazy(() => import('../pages/404')),
+    component: lazy(() => import('@/pages/404')),
     exact: true,
     id: '404',
     path: '*',
     public: true,
-    layout: MainLayout,
+    layout: BlankLayout,
   },
 ];
 
 export const PRIVATE_ROUTER: Route[] = [
   {
-    component: lazy(() => import('../pages/Home')),
+    component: lazy(() => import('@/pages/Home')),
     exact: true,
     id: 'private-01',
     path: '',
