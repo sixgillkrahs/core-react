@@ -47,13 +47,13 @@ function App() {
                 key={route.id}
                 path={route.path}
                 element={
-                  <MainLayout>
+                  <route.layout>
                     <PrivateRouter>
                       <Suspense fallback={<Loading />}>
                         <route.component />
                       </Suspense>
                     </PrivateRouter>
-                  </MainLayout>
+                  </route.layout>
                 }
               />
             );
