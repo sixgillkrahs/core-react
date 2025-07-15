@@ -20,17 +20,24 @@ export type AsyncFnReturn<
  * @returns
  *
  * ```tsx
- * import { useCopyToClipboard } from "../../hooks";
+ * import { useAsyncFn } from "../../hooks";
  *
  * function SomeComponent() {
- *   const [copyToClipboard, { value, success }] = useCopyToClipboard();
+ *   const [state, doFetch] = useAsyncFn(async () => {
+        const response = await fetch(url);
+        const result = await response.text();
+        return result
+      }, [url]);
  *   return (
  *     <div>
- *       <button onClick={() => copyToClipboard("Hello, world!")}>
- *         Copy to clipboard
- *       </button>
- *       <div>{value}</div>
- *     </div>
+          {state.loading
+            ? <div>Loading...</div>
+            : state.error
+              ? <div>Error: {state.error.message}</div>
+              : <div>Value: {state.value}</div>
+          }
+          <button onClick={() => doFetch()}>Start loading</button>
+       </div>
  *   );
  * }
  * ```
