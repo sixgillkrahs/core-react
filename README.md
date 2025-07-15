@@ -5,7 +5,7 @@
 [![Node](https://img.shields.io/badge/node-%3E=18.x-green)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/react-18+-blue)](https://react.dev/)
 
-A base template for future projects, built with **React + Vite**, **Redux Toolkit**, **TypeScript**, **Ant Design**, and **CSS**.
+A base template for future projects, built with **React + Vite**, **Redux Toolkit**, **TypeScript**, **Ant Design**, **Tailwind**, and **CSS**.
 
 ---
 
