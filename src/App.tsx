@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import MainLayout from './layouts/MainLayout';
 import PrivateRouter from './routes/PrivateRouter';
 import { PRIVATE_ROUTER, PUBLIC_ROUTER } from './routes/router';
 import { Loading } from './components';
@@ -14,13 +13,13 @@ function App() {
       locale={viVN}
       theme={{
         algorithm: theme.defaultAlgorithm,
-        // token: {
-        //   // Seed Token
-        //   // colorPrimary: "#00b96b",
-        //   // borderRadius: 6,
-        //   // // Alias Token
-        //   // colorBgContainer: "#f6ffed",
-        // },
+        token: {
+          // Seed Token
+          colorPrimary: '#00b96b',
+          borderRadius: 6,
+          // // Alias Token
+          colorBgContainer: '#f6ffed',
+        },
       }}
     >
       <BrowserRouter>

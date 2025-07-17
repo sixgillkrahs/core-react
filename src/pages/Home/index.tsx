@@ -1,20 +1,26 @@
-import { useAsyncFn } from '@/hooks';
-import { example } from '@/services/auth/api';
-import { Button } from 'antd';
-import { useState } from 'react';
+import { useChunkedUpload } from '@/hooks';
+import { useRef, useState } from 'react';
 
 const HomePage = () => {
-  const [refresh, setRefresh] = useState<number>(1);
-  const [state, fetchData] = useAsyncFn(example, []);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { upload, progress, status } = useChunkedUpload({
+    chunkSize: 2 * 1024 * 1024,
+    concurrency: 4,
+  });
+  const [uploadId] = useState(() => Math.random().toString(36).substring(2));
+
+  const handleUpload = () => {
+    const file = inputRef.current?.files?.[0];
+    if (!file) return;
+    upload(file, uploadId);
+  };
 
   return (
     <div>
-      {state.loading && <p>Loading…</p>}
-      {state.error && <p style={{ color: 'red' }}>{state.error.message}</p>}
-      {state.value && <pre>{JSON.stringify(state.value)}</pre>}
-      <Button onClick={() => fetchData('1')}>Fetch Data</Button>
-      <Button onClick={() => setRefresh((prev) => prev + 1)}>Fetch Data</Button>
-      <h1>{refresh}</h1>
+      <input type="file" ref={inputRef} />
+      <button onClick={handleUpload}>Upload</button>
+      <div>Progress: {progress}%</div>
+      <div>Status: {status}</div>
     </div>
   );
 };

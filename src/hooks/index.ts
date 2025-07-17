@@ -14,6 +14,7 @@ import useDisplayMessage from './useDisplayMessage';
 import useMountedState from './useMountedState';
 import useAsyncFn from './useAsyncFn';
 import useFavicon from './useFavicon';
+import useChunkedUpload from './useChunkedUpload';
 
 export {
   useQueryString,
@@ -33,4 +34,5 @@ export {
   useMountedState,
   useAsyncFn,
   useFavicon,
+  useChunkedUpload,
 };
