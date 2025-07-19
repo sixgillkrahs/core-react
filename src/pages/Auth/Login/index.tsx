@@ -1,7 +1,7 @@
-import { useTitle } from "@/hooks";
+import { useTitle } from '@/hooks';
 
 const LoginPage = () => {
-  useTitle("Đăng nhập")
+  useTitle('Đăng nhập');
   return <div>LoginPage</div>;
 };
 

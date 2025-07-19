@@ -36,5 +36,5 @@ export {
   useAsyncFn,
   useFavicon,
   useChunkedUpload,
-  useTitle
+  useTitle,
 };

@@ -18,16 +18,16 @@ function App() {
   return (
     <ConfigProvider
       locale={viVN}
-    // theme={{
-    //   algorithm: theme.defaultAlgorithm,
-    //   token: {
-    //     // Seed Token
-    //     colorPrimary: '#00b96b',
-    //     borderRadius: 6,
-    //     // // Alias Token
-    //     colorBgContainer: '#f6ffed',
-    //   },
-    // }}
+      // theme={{
+      //   algorithm: theme.defaultAlgorithm,
+      //   token: {
+      //     // Seed Token
+      //     colorPrimary: '#00b96b',
+      //     borderRadius: 6,
+      //     // // Alias Token
+      //     colorBgContainer: '#f6ffed',
+      //   },
+      // }}
     >
       {contextHolder}
       <BrowserRouter>

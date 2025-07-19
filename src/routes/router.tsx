@@ -3,7 +3,7 @@ import type { Route } from '@/types/route';
 import MainLayout from '@/layouts/MainLayout';
 import AuthLayout from '@/layouts/AuthLayout';
 import BlankLayout from '@/layouts/BlankLayout';
-import { UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons';
 
 export const PUBLIC_ROUTER: Route[] = [
   {
@@ -36,13 +36,13 @@ export const PRIVATE_ROUTER: Route[] = [
     children: [
       {
         component: lazy(() => import('@/pages/Home/Dashboard')),
-        key: "1234dfas",
-        path: "dashboard",
-        label: "Dashboard",
-      }
+        key: '1234dfas',
+        path: 'dashboard',
+        label: 'Dashboard',
+      },
     ],
     layout: MainLayout,
     label: 'Home',
-    icon: <UserOutlined />
+    icon: <UserOutlined />,
   },
 ];

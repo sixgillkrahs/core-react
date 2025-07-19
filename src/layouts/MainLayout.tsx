@@ -15,15 +15,16 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const [broken, setBroken] = useState<boolean>(false);
 
-  const menu: ItemType<MenuItemType>[] = [...PRIVATE_ROUTER, ...PUBLIC_ROUTER].map((item) => {
-    return {
-      title: item.label,
-      label: item.label,
-      icon: item.icon,
-      key: item.key,
-      children: item.children
-    }
-  }) || []
+  const menu: ItemType<MenuItemType>[] =
+    [...PRIVATE_ROUTER, ...PUBLIC_ROUTER].map((item) => {
+      return {
+        title: item.label,
+        label: item.label,
+        icon: item.icon,
+        key: item.key,
+        children: item.children,
+      };
+    }) || [];
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -42,9 +43,12 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
           theme="dark"
           mode="inline"
           onClick={(e) => {
-            const pathKeys = findPath([...PRIVATE_ROUTER, ...PUBLIC_ROUTER], e.key);
+            const pathKeys = findPath(
+              [...PRIVATE_ROUTER, ...PUBLIC_ROUTER],
+              e.key,
+            );
             if (pathKeys) {
-              navigate('/' + pathKeys.join("/"));
+              navigate('/' + pathKeys.join('/'));
             }
           }}
         />

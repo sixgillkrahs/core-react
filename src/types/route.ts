@@ -12,5 +12,5 @@ export interface ChildRoute {
   meta?: Record<string, any>;
   component: LazyExoticComponent<() => JSX.Element>;
   children?: ChildRoute[];
-  icon?: ReactNode
+  icon?: ReactNode;
 }
