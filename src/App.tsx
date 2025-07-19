@@ -18,16 +18,16 @@ function App() {
   return (
     <ConfigProvider
       locale={viVN}
-      theme={{
-        algorithm: theme.defaultAlgorithm,
-        token: {
-          // Seed Token
-          colorPrimary: '#00b96b',
-          borderRadius: 6,
-          // // Alias Token
-          colorBgContainer: '#f6ffed',
-        },
-      }}
+    // theme={{
+    //   algorithm: theme.defaultAlgorithm,
+    //   token: {
+    //     // Seed Token
+    //     colorPrimary: '#00b96b',
+    //     borderRadius: 6,
+    //     // // Alias Token
+    //     colorBgContainer: '#f6ffed',
+    //   },
+    // }}
     >
       {contextHolder}
       <BrowserRouter>
@@ -35,7 +35,7 @@ function App() {
           {PUBLIC_ROUTER.map((route) => {
             return (
               <Route
-                key={route.id}
+                key={route.key}
                 path={route.path}
                 element={
                   <route.layout>
@@ -51,7 +51,7 @@ function App() {
           {PRIVATE_ROUTER.map((route) => {
             return (
               <Route
-                key={route.id}
+                key={route.key}
                 path={route.path}
                 element={
                   <route.layout>

@@ -3,25 +3,26 @@ import type { Route } from '@/types/route';
 import MainLayout from '@/layouts/MainLayout';
 import AuthLayout from '@/layouts/AuthLayout';
 import BlankLayout from '@/layouts/BlankLayout';
+import { UserOutlined } from '@ant-design/icons'
 
 export const PUBLIC_ROUTER: Route[] = [
   {
     component: lazy(() => import('@/pages/Auth/Login')),
-    id: 'login',
+    key: 'login',
     path: 'login',
     layout: AuthLayout,
-    name: 'Login',
+    label: 'Login',
   },
   {
     component: lazy(() => import('@/pages/Auth/Register')),
-    id: 'register',
+    key: 'register',
     path: 'register',
     layout: AuthLayout,
-    name: 'Register',
+    label: 'Register',
   },
   {
     component: lazy(() => import('@/pages/404')),
-    id: '404',
+    key: '404',
     path: '*',
     layout: BlankLayout,
   },
@@ -30,10 +31,18 @@ export const PUBLIC_ROUTER: Route[] = [
 export const PRIVATE_ROUTER: Route[] = [
   {
     component: lazy(() => import('@/pages/Home')),
-    id: 'private-01',
-    path: '',
-    children: [],
+    key: 'private-01',
+    path: 'home',
+    children: [
+      {
+        component: lazy(() => import('@/pages/Home/Dashboard')),
+        key: "1234dfas",
+        path: "dashboard",
+        label: "Dashboard",
+      }
+    ],
     layout: MainLayout,
-    name: 'Home',
+    label: 'Home',
+    icon: <UserOutlined />
   },
 ];
