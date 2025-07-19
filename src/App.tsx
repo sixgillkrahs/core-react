@@ -1,13 +1,20 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import PrivateRouter from './routes/PrivateRouter';
 import { PRIVATE_ROUTER, PUBLIC_ROUTER } from './routes/router';
+import MessageService from './utils/message';
 import { Loading } from './components';
-import { ConfigProvider, theme } from 'antd';
+import { ConfigProvider, message, theme } from 'antd';
 import viVN from 'antd/locale/vi_VN';
 
 function App() {
+  const [messageApi, contextHolder] = message.useMessage();
+
+  useEffect(() => {
+    MessageService.init(messageApi);
+  }, [messageApi]);
+
   return (
     <ConfigProvider
       locale={viVN}
@@ -22,6 +29,7 @@ function App() {
         },
       }}
     >
+      {contextHolder}
       <BrowserRouter>
         <Routes>
           {PUBLIC_ROUTER.map((route) => {

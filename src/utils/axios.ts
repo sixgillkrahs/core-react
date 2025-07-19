@@ -2,10 +2,11 @@ import axiosConfig from 'axios';
 
 const axios = axiosConfig.create({
   baseURL: import.meta.env.VITE_BASEURL,
-  timeout: 10000,
+  timeout: 100000,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true, // bật cái này nếu ở backend có bật cờ Access-Control-Allow-Credentials: true
 });
 
 axios.interceptors.request.use(

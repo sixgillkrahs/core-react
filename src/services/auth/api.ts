@@ -22,3 +22,23 @@ export async function example(id: string) {
     data: resp?.data || {},
   };
 }
+
+export async function login(payload: any) {
+  const resp = await axios.post(`/auth/login`,payload);
+  return {
+    data: resp?.data || {},
+    code: resp.data?.code ,
+    message: resp.data?.message
+  };
+}
+
+
+export async function me() {
+  const resp = await axios.post(`/auth/me`);
+  return {
+    data: resp?.data || {},
+    code: resp.data?.code ,
+    message: resp.data?.message
+  };
+}
+
