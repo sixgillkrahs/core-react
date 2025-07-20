@@ -1,6 +1,8 @@
+import { useTitle } from '@/hooks';
 import './404.css';
 
 const NoFoundPage = () => {
+  useTitle('404 Not Found');
   return (
     <div className="cs_container">
       <div className="main_wrapper">

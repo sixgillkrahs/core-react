@@ -1,7 +1,8 @@
-import { useChunkedUpload } from '@/hooks';
+import { useChunkedUpload, useTitle } from '@/hooks';
 import { useRef, useState } from 'react';
 
 const HomePage = () => {
+  useTitle('Trang chủ');
   const inputRef = useRef<HTMLInputElement>(null);
   const { upload, progress, status } = useChunkedUpload({
     chunkSize: 2 * 1024 * 1024,
