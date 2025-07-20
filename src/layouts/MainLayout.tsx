@@ -7,7 +7,6 @@ import type { ItemType, MenuItemType } from 'antd/es/menu/interface';
 import { useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
@@ -62,8 +61,8 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} >
-          <div className='flex justify-between items-center h-full pr-4'>
+        <Header style={{ padding: 0, background: colorBgContainer }}>
+          <div className="flex justify-between items-center h-full pr-4">
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

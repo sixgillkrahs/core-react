@@ -9,7 +9,6 @@ import PrivateRouter from './routes/PrivateRouter';
 import { PRIVATE_ROUTER, PUBLIC_ROUTER } from './routes/router';
 import { getTheme, MessageService } from './utils';
 
-
 function AppContent() {
   const [messageApi, contextHolder] = message.useMessage();
   const { isDark } = useTheme();
@@ -19,10 +18,7 @@ function AppContent() {
   }, [messageApi]);
 
   return (
-    <ConfigProvider
-      locale={viVN}
-      theme={getTheme(isDark)}
-    >
+    <ConfigProvider locale={viVN} theme={getTheme(isDark)}>
       {contextHolder}
       <BrowserRouter>
         <Routes>
