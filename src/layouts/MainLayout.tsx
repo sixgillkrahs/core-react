@@ -1,9 +1,12 @@
+import ThemeSwitcher from '@/components/ThemeSwitcher';
 import { PRIVATE_ROUTER, PUBLIC_ROUTER } from '@/routes/router';
-import { findPath } from '@/utils/search';
-import { Layout, Menu, theme } from 'antd';
+import { findPath } from '@/utils';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { Button, Layout, Menu, theme } from 'antd';
 import type { ItemType, MenuItemType } from 'antd/es/menu/interface';
 import { useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -29,6 +32,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
+        trigger={null} // cái này sẽ ẩn hiện nút thu gọn ở sider
         collapsible
         breakpoint="lg"
         collapsedWidth={broken ? 0 : 80}
@@ -37,11 +41,15 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
         }}
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
+        style={{
+          background: colorBgContainer,
+        }}
       >
         <Menu
           items={menu}
-          theme="dark"
+          selectedKeys={[window.location.pathname]}
           mode="inline"
+          style={{ height: '100%', borderRight: 0 }}
           onClick={(e) => {
             const pathKeys = findPath(
               [...PRIVATE_ROUTER, ...PUBLIC_ROUTER],
@@ -54,7 +62,21 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
+        <Header style={{ padding: 0, background: colorBgContainer }} >
+          <div className='flex justify-between items-center h-full pr-4'>
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64,
+              }}
+            />
+            <ThemeSwitcher />
+          </div>
+        </Header>
         <Content style={{ margin: '24px 16px 0' }}>
           <div
             style={{

@@ -1,15 +1,18 @@
+import { ConfigProvider, message } from 'antd';
+import viVN from 'antd/locale/vi_VN';
 import { Suspense, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Loading } from './components';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import PrivateRouter from './routes/PrivateRouter';
 import { PRIVATE_ROUTER, PUBLIC_ROUTER } from './routes/router';
-import MessageService from './utils/message';
-import { Loading } from './components';
-import { ConfigProvider, message, theme } from 'antd';
-import viVN from 'antd/locale/vi_VN';
+import { getTheme, MessageService } from './utils';
 
-function App() {
+
+function AppContent() {
   const [messageApi, contextHolder] = message.useMessage();
+  const { isDark } = useTheme();
 
   useEffect(() => {
     MessageService.init(messageApi);
@@ -18,16 +21,7 @@ function App() {
   return (
     <ConfigProvider
       locale={viVN}
-      // theme={{
-      //   algorithm: theme.defaultAlgorithm,
-      //   token: {
-      //     // Seed Token
-      //     colorPrimary: '#00b96b',
-      //     borderRadius: 6,
-      //     // // Alias Token
-      //     colorBgContainer: '#f6ffed',
-      //   },
-      // }}
+      theme={getTheme(isDark)}
     >
       {contextHolder}
       <BrowserRouter>
@@ -68,6 +62,14 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ConfigProvider>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
