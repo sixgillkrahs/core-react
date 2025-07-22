@@ -23,7 +23,7 @@ export async function example(id: string) {
   };
 }
 
-export async function login(payload: any) {
+export async function login(payload: API.LoginPayload) {
   const resp = await axios.post(`/auth/login`, payload);
   return {
     data: resp?.data || {},
@@ -32,11 +32,29 @@ export async function login(payload: any) {
   };
 }
 
-export async function me() {
-  const resp = await axios.post(`/auth/me`);
+export async function getMe() {
+  const resp = await axios.get(`/auth/me`);
   return {
     data: resp?.data || {},
     code: resp.data?.code,
     message: resp.data?.message,
   };
+  // return {
+  //   "data": {
+  //     "username": "hello",
+  //     "email": "dvq2804@gmail.com",
+  //     "permissions": [
+  //        "user:deleteUser",
+  //        "user:editUser",
+  //        "user:createUser",
+  //        "user:listUser"
+  //      ],
+  //     "role": {
+  //        "id": 1,
+  //        "name": "Admin"
+  //     }
+  //   },
+  //   "code": 1,
+  //   "message": "success"
+  // }
 }

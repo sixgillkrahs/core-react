@@ -1,10 +1,11 @@
 import ThemeSwitcher from '@/components/ThemeSwitcher';
+import { AuthContext } from '@/context/AuthContext';
 import { PRIVATE_ROUTER, PUBLIC_ROUTER } from '@/routes/router';
 import { findPath } from '@/utils';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import type { ItemType, MenuItemType } from 'antd/es/menu/interface';
-import { useState, type ReactNode } from 'react';
+import { useContext, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -16,17 +17,39 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   } = theme.useToken();
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const [broken, setBroken] = useState<boolean>(false);
+  const { user } = useContext(AuthContext);
 
-  const menu: ItemType<MenuItemType>[] =
-    [...PRIVATE_ROUTER, ...PUBLIC_ROUTER].map((item) => {
-      return {
+  const menu = [...PRIVATE_ROUTER, ...PUBLIC_ROUTER].reduce<ItemType<MenuItemType>[]>((acc, item) => {
+    if (!item.hiddenMenu && user?.permissions.includes(item.permission || '')) {
+      acc.push({
         title: item.label,
         label: item.label,
         icon: item.icon,
         key: item.key,
         children: item.children,
-      };
-    }) || [];
+      });
+    }
+    return acc;
+  }, []);
+
+  const handleMenuClick = (key: string) => {
+    const pathKeys = findPath(
+      [...PRIVATE_ROUTER, ...PUBLIC_ROUTER],
+      key,
+    );
+    if (pathKeys) {
+      navigate('/' + pathKeys.join('/'));
+    }
+  }
+
+  const handleCollapsed = (value: boolean) => {
+    setCollapsed(value);
+    if (value) {
+      setBroken(true);
+    } else {
+      setBroken(false);
+    }
+  }
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -39,7 +62,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
           setBroken(isBroken);
         }}
         collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
+        onCollapse={handleCollapsed}
         style={{
           background: colorBgContainer,
         }}
@@ -49,15 +72,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
           selectedKeys={[window.location.pathname]}
           mode="inline"
           style={{ height: '100%', borderRight: 0 }}
-          onClick={(e) => {
-            const pathKeys = findPath(
-              [...PRIVATE_ROUTER, ...PUBLIC_ROUTER],
-              e.key,
-            );
-            if (pathKeys) {
-              navigate('/' + pathKeys.join('/'));
-            }
-          }}
+          onClick={(e) => handleMenuClick(e.key)}
         />
       </Sider>
       <Layout>

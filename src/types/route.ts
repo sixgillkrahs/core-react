@@ -13,4 +13,8 @@ export interface ChildRoute {
   component: LazyExoticComponent<() => JSX.Element>;
   children?: ChildRoute[];
   icon?: ReactNode;
+  permission?: string;
+  role?: string;
+  hiddenMenu?: boolean;
+  hiddenRoute?: boolean;
 }

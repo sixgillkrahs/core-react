@@ -1,13 +1,14 @@
 import { ConfigProvider, message } from 'antd';
 import viVN from 'antd/locale/vi_VN';
 import { Suspense, useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Loading } from './components';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import PrivateRouter from './routes/PrivateRouter';
 import { PRIVATE_ROUTER, PUBLIC_ROUTER } from './routes/router';
 import { getTheme, MessageService } from './utils';
+import { AuthProvider } from './context/AuthContext';
 
 function AppContent() {
   const [messageApi, contextHolder] = message.useMessage();
@@ -35,7 +36,7 @@ function AppContent() {
                   </route.layout>
                 }
               />
-            );
+            )
           })}
 
           {PRIVATE_ROUTER.map((route) => {
@@ -45,7 +46,7 @@ function AppContent() {
                 path={route.path}
                 element={
                   <route.layout>
-                    <PrivateRouter>
+                    <PrivateRouter requiredPermission={route.permission}>
                       <Suspense fallback={<Loading />}>
                         <route.component />
                       </Suspense>
@@ -55,6 +56,7 @@ function AppContent() {
               />
             );
           })}
+          <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
       </BrowserRouter>
     </ConfigProvider>
@@ -64,7 +66,9 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

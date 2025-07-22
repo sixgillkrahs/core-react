@@ -1,29 +1,26 @@
-import { useChunkedUpload, useTitle } from '@/hooks';
-import { useRef, useState } from 'react';
+import { useTitle } from '@/hooks';
+import { listUser } from '@/services/user/api';
+import { useEffect, useState } from 'react';
 
 const HomePage = () => {
   useTitle('Trang chủ');
-  const inputRef = useRef<HTMLInputElement>(null);
-  const { upload, progress, status } = useChunkedUpload({
-    chunkSize: 2 * 1024 * 1024,
-    concurrency: 4,
-  });
-  const [uploadId] = useState(() => Math.random().toString(36).substring(2));
+  const [data, setData] = useState<any>(null);
 
-  const handleUpload = () => {
-    const file = inputRef.current?.files?.[0];
-    if (!file) return;
-    upload(file, uploadId);
-  };
+  const fetchData = async () => {
+    const resp = await listUser();
+    setData(resp);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
-      <input type="file" ref={inputRef} />
-      <button onClick={handleUpload}>Upload</button>
-      <div>Progress: {progress}%</div>
-      <div>Status: {status}</div>
+      <div>HomePage</div>
+      <div>{JSON.stringify(data)}</div>
     </div>
-  );
+  )
 };
 
 export default HomePage;

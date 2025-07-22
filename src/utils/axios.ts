@@ -25,11 +25,10 @@ axios.interceptors.response.use(
   (error) => {
     if (error.response) {
       if (error.response.status === 403) {
-        // call refreshToken
-        console.log('');
+        window.location.href = '/unauthorized';
       }
       if (error.response.status === 401) {
-        console.log('Unauthorized');
+        window.location.href = '/login?redirect=' + window.location.pathname;
       }
     }
     return Promise.reject(error);

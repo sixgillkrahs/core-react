@@ -1,4 +1,4 @@
-import { useTitle } from "@/hooks";
+import { useTitle } from '@/hooks';
 
 const DashBoardPage = () => {
   useTitle('DashBoard');
